@@ -13,8 +13,8 @@ describe('fetchEmbed', () => {
   let store;
   let dispatched;
 
-  function run(saga, ...args) {
-    return runSaga(
+  async function run(saga, ...args) {
+    return await runSaga(
       {
         dispatch: (action) => store.dispatch(action),
         getState: () => store.getState()
@@ -32,19 +32,18 @@ describe('fetchEmbed', () => {
     global.fetch = fetchMock;
   });
 
-  it('dispatches success with html returned by oembed service', () => {
+  it('dispatches success with html returned by oembed service', async () => {
     state.serviceBaseURL = '/oembed';
     fetchMock.mockResponse(JSON.stringify({
       html: '<some>html</some>'
     }));
 
-    return run(actions.fetchEmbed, 'https://blah/foo')
-      .then(() => {
-        expect(store.getActions()).toEqual([
-          actions.start(),
-          actions.success({html: '<some>html</some>'})
-        ]);
-        expect(fetchMock).toHaveBeenCalledWith('/oembed?format=json&url=https%3A%2F%2Fblah%2Ffoo');
-      });
+    await run(actions.fetchEmbed, 'https://blah/foo');
+
+    expect(store.getActions()).toEqual([
+      actions.start(),
+      actions.success({html: '<some>html</some>'})
+    ]);
+    expect(fetchMock).toHaveBeenCalledWith('/oembed?format=json&url=https%3A%2F%2Fblah%2Ffoo');
   });
 });
