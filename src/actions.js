@@ -1,6 +1,13 @@
 import * as types from './types';
 
 
+export function startFetchEmbed(url) {
+  return {
+    type: types.START_FETCH_EMBED,
+    url
+  };
+}
+
 export function start() {
   return {
     type: types.FETCH_EMBED_STARTED
