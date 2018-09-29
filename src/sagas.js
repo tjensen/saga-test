@@ -8,10 +8,10 @@ export function* fetchEmbed(action) {
   const serviceBaseURL = yield select((state) => state.serviceBaseURL);
   try {
     const result = yield call(api.fetchEmbed, serviceBaseURL, action.url);
-    yield put(actions.success(result.html));
+    yield put(actions.fetchEmbedCompleted(result.html));
   }
   catch (error) {
-    yield put(actions.failure(error.toString()));
+    yield put(actions.fetchEmbedFailed(error.toString()));
   }
 }
 

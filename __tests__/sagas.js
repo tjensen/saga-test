@@ -14,7 +14,7 @@ describe('fetchEmbed', () => {
       .provide([
         [call(api.fetchEmbed, '/oembed', 'https://blah/foo'), {html: '<some>html</some>'}]
       ])
-      .put(actions.success('<some>html</some>'))
+      .put(actions.fetchEmbedCompleted('<some>html</some>'))
       .run();
   });
 
@@ -24,7 +24,7 @@ describe('fetchEmbed', () => {
       .provide([
         [call(api.fetchEmbed, '/oembed', 'https://blah/foo'), throwError(new Error('Server error'))]
       ])
-      .dispatch(actions.startFetchEmbed('https://blah/foo'))
+      .put(actions.fetchEmbedFailed('Error: Server error'))
       .run();
   });
 });

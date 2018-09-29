@@ -15,20 +15,14 @@ export function startFetchEmbed(url) {
   };
 };
 
-export function start() {
-  return {
-    type: types.FETCH_EMBED_STARTED
-  };
-};
-
-export function success(content) {
+export function fetchEmbedCompleted(content) {
   return {
     type: types.FETCH_EMBED_COMPLETED,
     content
   };
 };
 
-export function failure(error) {
+export function fetchEmbedFailed(error) {
   return {
     type: types.FETCH_EMBED_FAILED,
     error
