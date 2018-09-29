@@ -29,13 +29,11 @@ describe('fetchEmbed', () => {
   });
 });
 
-// Skipping for now because the takeEffect method isn't working or I've misinterpreted how it's
-// supposed to be used.
-describe.skip('root saga', () => {
+describe('root saga', () => {
   it('invokes fetchEmbed saga when starting to fetch embed', async () => {
     await testSaga(rootSaga)
       .next()
-      .takeEveryFork(actions.startFetchEmbed().type, sagas.fetchEmbed)
+      .takeEveryEffect(actions.startFetchEmbed().type, sagas.fetchEmbed)
       .finish()
       .isDone();
   });
