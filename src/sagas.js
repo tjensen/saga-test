@@ -4,12 +4,8 @@ import api from './api';
 import * as actions from './actions';
 
 
-export function getServiceBaseURL(state) {
-  return state.serviceBaseURL;
-}
-
 export function* fetchEmbed(action) {
-  const serviceBaseURL = yield select(getServiceBaseURL);
+  const serviceBaseURL = yield select((state) => state.serviceBaseURL);
   try {
     const result = yield call(api.fetchEmbed, serviceBaseURL, action.url);
     yield put(actions.success(result.html));
