@@ -1,29 +1,33 @@
-import {call, select} from 'redux-saga/effects';
 import {testSaga, expectSaga} from 'redux-saga-test-plan';
-import {throwError} from 'redux-saga-test-plan/providers';
+import fetchMock from 'jest-fetch-mock';
 
-import * as actions from '../src/actions';
+import actions from '../src/actions';
 import rootSaga, {fetchEmbed} from '../src/sagas';
 import api from '../src/api';
 
 
 describe('fetchEmbed', () => {
+  beforeEach(() => {
+    fetchMock.resetMocks();
+    global.fetch = fetchMock;
+  });
+
   it('dispatches success with html returned by oembed service', async () => {
+    fetchMock.mockResponse(JSON.stringify({
+      html: '<some>html</some>'
+    }));
+
     await expectSaga(fetchEmbed, actions.startFetchEmbed('https://blah/foo'))
       .withState({serviceBaseURL: '/oembed'})
-      .provide([
-        [call(api.fetchEmbed, '/oembed', 'https://blah/foo'), {html: '<some>html</some>'}]
-      ])
       .put(actions.fetchEmbedCompleted('<some>html</some>'))
       .run();
   });
 
   it('dispatches failure when oembed service returns error', async () => {
+    fetchMock.mockReject(new Error('Server error'));
+
     await expectSaga(fetchEmbed, actions.startFetchEmbed('https://blah/foo'))
       .withState({serviceBaseURL: '/oembed'})
-      .provide([
-        [call(api.fetchEmbed, '/oembed', 'https://blah/foo'), throwError(new Error('Server error'))]
-      ])
       .put(actions.fetchEmbedFailed('Error: Server error'))
       .run();
   });

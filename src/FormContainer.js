@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import Form from './Form';
-import * as actionCreators from './actions';
+import actions from './actions';
 
 
 function mapStateToProps(state) {
@@ -29,4 +29,4 @@ class FormContainer extends Component {
   }
 };
 
-export default connect(mapStateToProps, actionCreators)(FormContainer);
+export default connect(mapStateToProps, actions)(FormContainer);

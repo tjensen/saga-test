@@ -1,7 +1,7 @@
 import {call, put, select, takeEvery} from 'redux-saga/effects';
 
 import api from './api';
-import * as actions from './actions';
+import actions from './actions';
 
 
 export function* fetchEmbed(action) {

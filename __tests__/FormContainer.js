@@ -4,7 +4,7 @@ import TestRenderer from 'react-test-renderer';
 
 import FormContainer from '../src/FormContainer';
 import Form from '../src/Form';
-import * as actions from '../src/actions';
+import actions from '../src/actions';
 
 
 describe('FormContainer', () => {
