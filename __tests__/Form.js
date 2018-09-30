@@ -36,7 +36,8 @@ describe('Form component', () => {
     const submit = form.findByType('button');
     expect(submit.props).toEqual({
       type: 'button',
-      onClick: expect.anything()
+      onClick: expect.anything(),
+      children: "Submit"
     });
 
     const error = form.findByProps({id: 'fetch-error'});

@@ -40,7 +40,7 @@ class Form extends Component {
           value={this.state.resourceURL}
           onChange={this.onResourceURLChange.bind(this)}
         />
-        <button type="button" onClick={this.onSubmit.bind(this)}/>
+        <button type="button" onClick={this.onSubmit.bind(this)}>Submit</button>
         <div id="fetch-error">{this.props.fetchError}</div>
         <textarea
           id="embed-html"
