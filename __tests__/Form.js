@@ -70,6 +70,7 @@ describe('Form component', () => {
     const submit = form.findByType('button');
     expect(submit.props).toEqual({
       type: 'button',
+      disabled: false,
       onClick: expect.anything(),
       children: "Submit"
     });
@@ -102,6 +103,15 @@ describe('Form component', () => {
 
     const html = renderer.root.findByType('textarea');
     expect(html.props.value).toEqual('<some>html</some>');
+  });
+
+  it('disables the submit button when fetching is true', () => {
+    const renderer = TestRenderer.create(
+      <Form fetching={true}/>
+    );
+
+    const submit = renderer.root.findByType('button');
+    expect(submit.props.disabled).toBeTruthy();
   });
 
   it('calls onSubmit prop when submit button is clicked', () => {

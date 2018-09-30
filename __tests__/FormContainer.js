@@ -14,6 +14,7 @@ describe('FormContainer', () => {
 
   beforeEach(() => {
     state = {
+      fetching: false,
       embedHTML: '<some>html</some>',
       fetchError: 'some error'
     };
@@ -34,6 +35,7 @@ describe('FormContainer', () => {
     const form = renderer.root.findByType(Form);
 
     expect(form.props).toEqual({
+      fetching: false,
       embedHTML: '<some>html</some>',
       fetchError: 'some error',
       onSubmit: expect.anything()

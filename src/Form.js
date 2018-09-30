@@ -65,7 +65,11 @@ class Form extends Component {
           </label>
         </div>
         <div className="form-row">
-          <button type="button" onClick={this.onSubmit.bind(this)}>Submit</button>
+          <button
+            type="button"
+            disabled={Boolean(this.props.fetching)}
+            onClick={this.onSubmit.bind(this)}
+          >Submit</button>
         </div>
         <div className="form-row">
           <div id="fetch-error">{this.props.fetchError}</div>
