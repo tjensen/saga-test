@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <h1>Hello, world!</h1>
+          <h1>Fetch Embed Code</h1>
           <FormContainer/>
         </div>
       </Provider>

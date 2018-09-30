@@ -51,7 +51,7 @@ describe('App', () => {
     expect(app.type).toEqual('div');
 
     const h1 = app.findByType('h1')
-    expect(h1.props.children).toEqual('Hello, world!');
+    expect(h1.props.children).toEqual('Fetch Embed Code');
 
     const formContainer = app.findByType(FormContainer);
     expect(formContainer.props).toEqual({});

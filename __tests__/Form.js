@@ -14,14 +14,48 @@ describe('Form component', () => {
     });
 
     const serviceBaseURL = form.findByProps({id: 'service-base-url'});
-    expect(serviceBaseURL.type).toEqual('input');
+    expect(serviceBaseURL.type).toEqual('select');
     expect(serviceBaseURL.props).toEqual({
-      type: 'text',
       id: 'service-base-url',
-      value: '',
-      placeholder: 'Service Base URL',
-      onChange: expect.anything()
+      value: 'http://www.youtube.com/oembed',
+      onChange: expect.anything(),
+      children: expect.anything()
     });
+    const options = serviceBaseURL.findAllByType('option');
+    expect(options.map((o) => o.props)).toEqual([
+      {
+        value: 'https://www.flickr.com/services/oembed/',
+        children: 'Flickr'
+      },
+      {
+        value: 'https://giphy.com/services/oembed',
+        children: 'GIPHY'
+      },
+      {
+        value: 'https://api.gfycat.com/v1/oembed',
+        children: 'Gfycat'
+      },
+      {
+        value: 'https://www.reddit.com/oembed',
+        children: 'Reddit'
+      },
+      {
+        value: 'https://soundcloud.com/oembed',
+        children: 'SoundCloud'
+      },
+      {
+        value: 'https://api.twitch.tv/v4/oembed',
+        children: 'Twitch'
+      },
+      {
+        value: 'https://publish.twitter.com/oembed',
+        children: 'Twitter'
+      },
+      {
+        value: 'http://www.youtube.com/oembed',
+        children: 'Youtube'
+      }
+    ]);
 
     const resourceURL = form.findByProps({id: 'resource-url'});
     expect(resourceURL.type).toEqual('input');
