@@ -21,7 +21,13 @@ describe('fetchEmbed', () => {
     });
 
     expect(fetchMock).toHaveBeenCalledWith(
-      'https://base/url?format=json&url=https%3A%2F%2Fresource%2Furl');
+      'https://cors-anywhere.herokuapp.com/https://base/url?format=json' +
+      '&url=https%3A%2F%2Fresource%2Furl',
+      {
+        headers: {
+          'X-Requested-With': 'saga-test'
+        }
+      });
   });
 
   it('throws error on error status', async () => {
