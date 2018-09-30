@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import CommonEmbedData from '../components/CommonEmbedData';
 import RichEmbedData from '../components/RichEmbedData';
+import PhotoEmbedData from '../components/PhotoEmbedData';
 
 
 function mapStateToProps(state) {
@@ -10,6 +11,7 @@ function mapStateToProps(state) {
     return {
       haveEmbedData: true,
       isRich: state.embedData.type === 'video' || state.embedData.type === 'rich',
+      isPhoto: state.embedData.type === 'photo',
       type: state.embedData.type,
       version: state.embedData.version,
       title: state.embedData.title,
@@ -22,6 +24,7 @@ function mapStateToProps(state) {
       thumbnailWidth: state.embedData.thumbnail_width,
       thumbnailHeight: state.embedData.thumbnail_height,
       html: state.embedData.html,
+      url: state.embedData.url,
       width: state.embedData.width,
       height: state.embedData.height
     }
@@ -55,6 +58,13 @@ class EmbedDataContainer extends Component {
             {this.props.isRich && (
               <RichEmbedData
                 html={this.props.html}
+                width={this.props.width}
+                height={this.props.height}
+              />
+            )}
+            {this.props.isPhoto && (
+              <PhotoEmbedData
+                url={this.props.url}
                 width={this.props.width}
                 height={this.props.height}
               />

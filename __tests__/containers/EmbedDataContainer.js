@@ -5,6 +5,7 @@ import TestRenderer from 'react-test-renderer';
 import EmbedDataContainer from '../../src/containers/EmbedDataContainer';
 import CommonEmbedData from '../../src/components/CommonEmbedData';
 import RichEmbedData from '../../src/components/RichEmbedData';
+import PhotoEmbedData from '../../src/components/PhotoEmbedData';
 
 
 describe('EmbedDataContainer', () => {
@@ -40,6 +41,7 @@ describe('EmbedDataContainer', () => {
 
     expect(container.findAllByType(CommonEmbedData)).toHaveLength(0);
     expect(container.findAllByType(RichEmbedData)).toHaveLength(0);
+    expect(container.findAllByType(PhotoEmbedData)).toHaveLength(0);
   });
 
   it('renders common embed data when embedData is empty', () => {
@@ -59,6 +61,7 @@ describe('EmbedDataContainer', () => {
     expect(common.props).toEqual({});
 
     expect(container.findAllByType(RichEmbedData)).toHaveLength(0);
+    expect(container.findAllByType(PhotoEmbedData)).toHaveLength(0);
   });
 
   it('renders common embed data when embedData is fully populated with optional fields', () => {
@@ -101,6 +104,7 @@ describe('EmbedDataContainer', () => {
     });
 
     expect(container.findAllByType(RichEmbedData)).toHaveLength(0);
+    expect(container.findAllByType(PhotoEmbedData)).toHaveLength(0);
   });
 
   it('renders common embed data and video embed data when type is video', () => {
@@ -121,10 +125,39 @@ describe('EmbedDataContainer', () => {
     expect(container.props.children).not.toContain('Click "Submit" button to view an embed');
 
     expect(container.findAllByType(CommonEmbedData)).toHaveLength(1);
+    expect(container.findAllByType(PhotoEmbedData)).toHaveLength(0);
 
     const rich = container.findByType(RichEmbedData);
     expect(rich.props).toEqual({
       html: '<some>html</some>',
+      width: 640,
+      height: 480
+    });
+  });
+
+  it('renders common embed data and photo embed data when type is photo', () => {
+    state.embedData = {
+      type: 'photo',
+      url: 'https://image/url',
+      width: 640,
+      height: 480
+    };
+
+    const renderer = TestRenderer.create(
+      <Provider store={store}>
+        <EmbedDataContainer/>
+      </Provider>
+    );
+
+    const container = renderer.root.findByProps({className: 'embed-data-container'});
+    expect(container.props.children).not.toContain('Click "Submit" button to view an embed');
+
+    expect(container.findAllByType(CommonEmbedData)).toHaveLength(1);
+    expect(container.findAllByType(RichEmbedData)).toHaveLength(0);
+
+    const photo = container.findByType(PhotoEmbedData);
+    expect(photo.props).toEqual({
+      url: 'https://image/url',
       width: 640,
       height: 480
     });
