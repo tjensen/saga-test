@@ -86,7 +86,9 @@ class Form extends Component {
           />
         </div>
         <div className="form-row">
-          <div id="preview" dangerouslySetInnerHTML={{__html: this.props.embedHTML}}/>
+          <div id="preview-container">
+            <div id="preview" dangerouslySetInnerHTML={{__html: this.props.embedHTML}}/>
+          </div>
         </div>
       </div>
     );

@@ -1,5 +1,10 @@
+#root {
+  display: flex;
+  width: 100%;
+}
+
 .App {
-  margin: 1rem;
+  margin: auto;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -9,10 +14,28 @@
   width: 500px;
 }
 
+div#preview-container {
+  margin: auto;
+}
+
+div#preview {
+  border: solid black;
+  border-width: 1px;
+}
+
+#fetch-error {
+  color: red;
+  font-weight: bold;
+}
+
 .form-row {
   flex: 1;
   display: flex;
   margin: 4px 0px 4px 0px;
+}
+
+h1 {
+  text-align: center;
 }
 
 label {
