@@ -4,7 +4,7 @@ import api from './api';
 import actions from './actions';
 
 
-export function* fetchEmbed(action) {
+function* fetchEmbed(action) {
   const serviceBaseURL = yield select((state) => state.serviceBaseURL);
   try {
     const result = yield call(api.fetchEmbed, serviceBaseURL, action.payload);
@@ -16,5 +16,5 @@ export function* fetchEmbed(action) {
 }
 
 export default function* () {
-  yield takeEvery(actions.startFetchEmbed().type, fetchEmbed);
+  yield takeEvery(actions.startFetchEmbed, fetchEmbed);
 }

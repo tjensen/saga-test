@@ -1,40 +1,39 @@
-import {call, select} from 'redux-saga/effects';
-import {testSaga, expectSaga} from 'redux-saga-test-plan';
-import {throwError} from 'redux-saga-test-plan/providers';
+import {END, effects} from 'redux-saga';
+import {expectSaga, providers} from 'redux-saga-test-plan';
 
 import actions from '../src/actions';
-import rootSaga, {fetchEmbed} from '../src/sagas';
+import rootSaga from '../src/sagas';
 import api from '../src/api';
 
 
-describe('fetchEmbed', () => {
-  it('dispatches success with html returned by oembed service', async () => {
-    await expectSaga(fetchEmbed, actions.startFetchEmbed('https://blah/foo'))
+describe('dispatching a start fetch embed action', () => {
+  it('causes fetch embed completed to be dispatched on success', async () => {
+    await expectSaga(rootSaga)
       .withState({serviceBaseURL: '/oembed'})
       .provide([
-        [call(api.fetchEmbed, '/oembed', 'https://blah/foo'), {html: '<some>html</some>'}]
+        [
+          effects.call(api.fetchEmbed, '/oembed', 'https://blah/foo'),
+          {html: '<some>html</some>'}
+        ]
       ])
       .put(actions.fetchEmbedCompleted({html: '<some>html</some>'}))
+      .dispatch(actions.startFetchEmbed('https://blah/foo'))
+      .dispatch(END)
       .run();
   });
 
-  it('dispatches failure when oembed service returns error', async () => {
-    await expectSaga(fetchEmbed, actions.startFetchEmbed('https://blah/foo'))
+  it('causes fetch embed failed to be dispatched on error', async () => {
+    await expectSaga(rootSaga)
       .withState({serviceBaseURL: '/oembed'})
       .provide([
-        [call(api.fetchEmbed, '/oembed', 'https://blah/foo'), throwError(new Error('Server error'))]
+        [
+          effects.call(api.fetchEmbed, '/oembed', 'https://blah/foo'),
+          providers.throwError(new Error('Server error'))
+        ]
       ])
       .put(actions.fetchEmbedFailed('Error: Server error'))
+      .dispatch(actions.startFetchEmbed('https://blah/foo'))
+      .dispatch(END)
       .run();
-  });
-});
-
-describe('root saga', () => {
-  it('invokes fetchEmbed saga when starting to fetch embed', async () => {
-    await testSaga(rootSaga)
-      .next()
-      .takeEveryEffect(actions.startFetchEmbed().type, fetchEmbed)
-      .finish()
-      .isDone();
   });
 });
