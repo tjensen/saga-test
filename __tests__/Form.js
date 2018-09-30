@@ -67,9 +67,11 @@ describe('Form component', () => {
       onChange: expect.anything()
     });
 
-    const submit = form.findByType('button');
+    const submit = form.findByProps({id: 'submit'});
+    expect(submit.type).toEqual('button');
     expect(submit.props).toEqual({
       type: 'button',
+      id: 'submit',
       disabled: false,
       onClick: expect.anything(),
       children: "Submit"
@@ -88,6 +90,13 @@ describe('Form component', () => {
       cols: 80,
       readOnly: true
     });
+
+    const preview = form.findByProps({id: 'preview'});
+    expect(preview.type).toEqual('div');
+    expect(preview.props).toEqual({
+      id: 'preview',
+      dangerouslySetInnerHTML: {}
+    });
   });
 
   it('renders form elements with values in props', () => {
@@ -103,6 +112,14 @@ describe('Form component', () => {
 
     const html = renderer.root.findByType('textarea');
     expect(html.props.value).toEqual('<some>html</some>');
+
+    const preview = renderer.root.findByProps({id: 'preview'});
+    expect(preview.props).toEqual({
+      id: 'preview',
+      dangerouslySetInnerHTML: {
+        __html: '<some>html</some>'
+      }
+    });
   });
 
   it('disables the submit button when fetching is true', () => {
@@ -110,14 +127,14 @@ describe('Form component', () => {
       <Form fetching={true}/>
     );
 
-    const submit = renderer.root.findByType('button');
+    const submit = renderer.root.findByProps({id: 'submit'});
     expect(submit.props.disabled).toBeTruthy();
   });
 
   it('calls onSubmit prop when submit button is clicked', () => {
     const onSubmit = jest.fn();
     const renderer = TestRenderer.create(<Form onSubmit={onSubmit}/>);
-    const submit = renderer.root.findByType('button');
+    const submit = renderer.root.findByProps({id: 'submit'});
     const serviceBaseURL = renderer.root.findByProps({id: 'service-base-url'});
     serviceBaseURL.props.onChange({target: {value: 'https://service/base'}});
     const resourceURL = renderer.root.findByProps({id: 'resource-url'});

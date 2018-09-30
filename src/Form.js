@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 
+// Based on Implementations listed at https://oembed.com/
 const OPTIONS = {
   Flickr: 'https://www.flickr.com/services/oembed/',
   GIPHY: 'https://giphy.com/services/oembed',
@@ -67,6 +68,7 @@ class Form extends Component {
         <div className="form-row">
           <button
             type="button"
+            id="submit"
             disabled={Boolean(this.props.fetching)}
             onClick={this.onSubmit.bind(this)}
           >Submit</button>
@@ -82,6 +84,9 @@ class Form extends Component {
             readOnly
             value={this.props.embedHTML}
           />
+        </div>
+        <div className="form-row">
+          <div id="preview" dangerouslySetInnerHTML={{__html: this.props.embedHTML}}/>
         </div>
       </div>
     );
