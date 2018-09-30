@@ -65,7 +65,7 @@ function CommonEmbedData(props) {
         </label>
       </div>
       <div className="row">
-        <label className="thumbnail">
+        <label className="big">
           Thumbnail:
           <Thumbnail
             id="embed-thumbnail"

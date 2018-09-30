@@ -46,11 +46,11 @@ label > input, label > select, label > div {
   margin-left: 10px;
 }
 
-label > .thumbnail {
+label.big > div, label.big > textarea {
   margin-left: 0px;
 }
 
-label.thumbnail {
+label.big {
   flex-direction: column;
 }
 

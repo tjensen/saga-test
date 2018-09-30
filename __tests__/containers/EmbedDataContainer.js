@@ -4,6 +4,7 @@ import TestRenderer from 'react-test-renderer';
 
 import EmbedDataContainer from '../../src/containers/EmbedDataContainer';
 import CommonEmbedData from '../../src/components/CommonEmbedData';
+import RichEmbedData from '../../src/components/RichEmbedData';
 
 
 describe('EmbedDataContainer', () => {
@@ -36,6 +37,9 @@ describe('EmbedDataContainer', () => {
       className: 'embed-data-container',
       children: 'Click "Submit" button to view an embed'
     });
+
+    expect(container.findAllByType(CommonEmbedData)).toHaveLength(0);
+    expect(container.findAllByType(RichEmbedData)).toHaveLength(0);
   });
 
   it('renders common embed data when embedData is empty', () => {
@@ -53,6 +57,8 @@ describe('EmbedDataContainer', () => {
 
     const common = container.findByType(CommonEmbedData);
     expect(common.props).toEqual({});
+
+    expect(container.findAllByType(RichEmbedData)).toHaveLength(0);
   });
 
   it('renders common embed data when embedData is fully populated with optional fields', () => {
@@ -92,6 +98,35 @@ describe('EmbedDataContainer', () => {
       thumbnailURL: 'https://thumbnail/url',
       thumbnailWidth: 160,
       thumbnailHeight: 120
+    });
+
+    expect(container.findAllByType(RichEmbedData)).toHaveLength(0);
+  });
+
+  it('renders common embed data and video embed data when type is video', () => {
+    state.embedData = {
+      type: 'video',
+      html: '<some>html</some>',
+      width: 640,
+      height: 480
+    };
+
+    const renderer = TestRenderer.create(
+      <Provider store={store}>
+        <EmbedDataContainer/>
+      </Provider>
+    );
+
+    const container = renderer.root.findByProps({className: 'embed-data-container'});
+    expect(container.props.children).not.toContain('Click "Submit" button to view an embed');
+
+    expect(container.findAllByType(CommonEmbedData)).toHaveLength(1);
+
+    const rich = container.findByType(RichEmbedData);
+    expect(rich.props).toEqual({
+      html: '<some>html</some>',
+      width: 640,
+      height: 480
     });
   });
 });
