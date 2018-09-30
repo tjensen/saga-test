@@ -39,7 +39,7 @@ class Form extends Component {
   render() {
     return (
       <div id="fetch-embed-form">
-        <div className="form-row">
+        <div className="row">
           <label>
             Service:
             <select
@@ -53,7 +53,7 @@ class Form extends Component {
             </select>
           </label>
         </div>
-        <div className="form-row">
+        <div className="row">
           <label>
             Resource:
             <input
@@ -65,7 +65,7 @@ class Form extends Component {
             />
           </label>
         </div>
-        <div className="form-row">
+        <div className="row">
           <button
             type="button"
             id="submit"
@@ -73,22 +73,8 @@ class Form extends Component {
             onClick={this.onSubmit.bind(this)}
           >Submit</button>
         </div>
-        <div className="form-row">
+        <div className="row">
           <div id="fetch-error">{this.props.fetchError}</div>
-        </div>
-        <div className="form-row">
-          <textarea
-            id="embed-html"
-            rows={5}
-            cols={80}
-            readOnly
-            value={this.props.embedHTML}
-          />
-        </div>
-        <div className="form-row">
-          <div id="preview-container">
-            <div id="preview" dangerouslySetInnerHTML={{__html: this.props.embedHTML}}/>
-          </div>
         </div>
       </div>
     );

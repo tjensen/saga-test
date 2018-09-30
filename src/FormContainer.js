@@ -8,7 +8,6 @@ import actions from './actions';
 function mapStateToProps(state) {
   return {
     fetching: state.fetching,
-    embedHTML: state.embedData ? state.embedData.html : undefined,
     fetchError: state.fetchError
   }
 }
@@ -23,7 +22,6 @@ class FormContainer extends Component {
     return (
       <Form
         fetching={this.props.fetching}
-        embedHTML={this.props.embedHTML}
         fetchError={this.props.fetchError}
         onSubmit={this.onSubmit.bind(this)}
       />

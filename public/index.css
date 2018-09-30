@@ -8,7 +8,7 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-#fetch-embed-form {
+#fetch-embed-form #embed-code-container {
   display: flex;
   flex-direction: column;
   width: 500px;
@@ -28,7 +28,7 @@ div#preview {
   font-weight: bold;
 }
 
-.form-row {
+.row {
   flex: 1;
   display: flex;
   margin: 4px 0px 4px 0px;
@@ -42,8 +42,16 @@ label {
   font-weight: bold;
 }
 
-input, select {
+label > input, label > select, label > div {
   margin-left: 10px;
+}
+
+label > .thumbnail {
+  margin-left: 0px;
+}
+
+label.thumbnail {
+  flex-direction: column;
 }
 
 label, input, select {

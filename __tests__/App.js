@@ -6,6 +6,7 @@ import TestRenderer from 'react-test-renderer';
 
 import App from '../src/App';
 import FormContainer from '../src/FormContainer';
+import EmbedDataContainer from '../src/containers/EmbedDataContainer';
 import reducers from '../src/reducers';
 import rootSaga from '../src/sagas';
 
@@ -55,5 +56,8 @@ describe('App', () => {
 
     const formContainer = app.findByType(FormContainer);
     expect(formContainer.props).toEqual({});
+
+    const embedDataContainer = app.findByType(EmbedDataContainer);
+    expect(embedDataContainer.props).toEqual({});
   });
 });

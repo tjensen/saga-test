@@ -82,44 +82,15 @@ describe('Form component', () => {
     expect(error.props).toEqual({
       id: 'fetch-error'
     });
-
-    const html = form.findByType('textarea');
-    expect(html.props).toEqual({
-      id: 'embed-html',
-      rows: 5,
-      cols: 80,
-      readOnly: true
-    });
-
-    const preview = form.findByProps({id: 'preview'});
-    expect(preview.type).toEqual('div');
-    expect(preview.props).toEqual({
-      id: 'preview',
-      dangerouslySetInnerHTML: {}
-    });
   });
 
-  it('renders form elements with values in props', () => {
+  it('renders fetch error message when set in props', () => {
     const renderer = TestRenderer.create(
-      <Form
-        embedHTML="<some>html</some>"
-        fetchError="some error"
-      />
+      <Form fetchError="some error"/>
     );
 
     const error = renderer.root.findByProps({id: 'fetch-error'});
     expect(error.props.children).toEqual('some error');
-
-    const html = renderer.root.findByType('textarea');
-    expect(html.props.value).toEqual('<some>html</some>');
-
-    const preview = renderer.root.findByProps({id: 'preview'});
-    expect(preview.props).toEqual({
-      id: 'preview',
-      dangerouslySetInnerHTML: {
-        __html: '<some>html</some>'
-      }
-    });
   });
 
   it('disables the submit button when fetching is true', () => {
