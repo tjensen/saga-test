@@ -8,7 +8,7 @@ import actions from './actions';
 function mapStateToProps(state) {
   return {
     fetching: state.fetching,
-    embedHTML: state.embedHTML,
+    embedHTML: state.embedData ? state.embedData.html : undefined,
     fetchError: state.fetchError
   }
 }

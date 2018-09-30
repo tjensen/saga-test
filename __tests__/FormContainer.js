@@ -15,7 +15,7 @@ describe('FormContainer', () => {
   beforeEach(() => {
     state = {
       fetching: false,
-      embedHTML: '<some>html</some>',
+      embedData: {html: '<some>html</some>'},
       fetchError: 'some error'
     };
     dispatched = [];

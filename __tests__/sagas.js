@@ -14,7 +14,7 @@ describe('fetchEmbed', () => {
       .provide([
         [call(api.fetchEmbed, '/oembed', 'https://blah/foo'), {html: '<some>html</some>'}]
       ])
-      .put(actions.fetchEmbedCompleted('<some>html</some>'))
+      .put(actions.fetchEmbedCompleted({html: '<some>html</some>'}))
       .run();
   });
 

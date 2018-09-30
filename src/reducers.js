@@ -6,7 +6,7 @@ import * as types from './types';
 export const initialState = {
   serviceBaseURL: null,
   fetching: false,
-  embedHTML: '',
+  embedData: null,
   fetchError: null
 };
 
@@ -26,13 +26,13 @@ const reducerMap = {
   [types.FETCH_EMBED_COMPLETED]: (state, action) => ({
     ...state,
     fetching: false,
-    embedHTML: action.payload,
+    embedData: action.payload,
     fetchError: null
   }),
   [types.FETCH_EMBED_FAILED]: (state, action) => ({
     ...state,
     fetching: false,
-    embedHTML: '',
+    embedData: null,
     fetchError: action.payload.toString()
   })
 }

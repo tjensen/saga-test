@@ -27,35 +27,35 @@ describe('reducers', () => {
     });
   });
 
-  it('clear error, set HTML, and clear fetching when fetching embed completes', () => {
+  it('clear error, set embed data, and clear fetching when fetching embed completes', () => {
     const state = reducers(
       {
         ...initialState,
         fetching: true,
         fetchError: 'some error'
-      }, actions.fetchEmbedCompleted('html'));
+      }, actions.fetchEmbedCompleted({some: 'data'}));
 
     expect(state).toEqual({
       ...initialState,
       fetching: false,
-      embedHTML: 'html',
+      embedData: {some: 'data'},
       fetchError: null
     });
   });
 
-  it('set error, clear HTML, and clear fetching when fetching embed fails', () => {
+  it('set error, clear embed data, and clear fetching when fetching embed fails', () => {
     const state = reducers(
       {
         ...initialState,
         fetching: true,
-        embedHTML: 'html',
+        embedData: null,
         fetchError: null
       }, actions.fetchEmbedFailed(new Error('some error')));
 
     expect(state).toEqual({
       ...initialState,
       fetching: false,
-      embedHTML: '',
+      embedData: null,
       fetchError: 'Error: some error'
     });
   });
