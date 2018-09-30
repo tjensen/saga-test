@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import TestRenderer from 'react-test-renderer';
 
 import App from '../src/App';
-import FormContainer from '../src/FormContainer';
+import FormContainer from '../src/containers/FormContainer';
 import EmbedDataContainer from '../src/containers/EmbedDataContainer';
 import reducers from '../src/reducers';
 import rootSaga from '../src/sagas';

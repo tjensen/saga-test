@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import Form from './Form';
-import actions from './actions';
+import Form from '../components/Form';
+import actions from '../actions';
 
 
 function mapStateToProps(state) {

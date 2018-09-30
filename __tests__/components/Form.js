@@ -1,6 +1,6 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
-import Form from '../src/Form';
+import Form from '../../src/components/Form';
 
 describe('Form component', () => {
   it('renders form elements with default values', () => {

@@ -3,7 +3,7 @@ import {createStore, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import {Provider} from 'react-redux';
 
-import FormContainer from './FormContainer';
+import FormContainer from './containers/FormContainer';
 import EmbedDataContainer from './containers/EmbedDataContainer';
 import reducers from './reducers';
 import rootSaga from './sagas';

@@ -2,9 +2,9 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import TestRenderer from 'react-test-renderer';
 
-import FormContainer from '../src/FormContainer';
-import Form from '../src/Form';
-import actions from '../src/actions';
+import FormContainer from '../../src/containers/FormContainer';
+import Form from '../../src/components/Form';
+import actions from '../../src/actions';
 
 
 describe('FormContainer', () => {
