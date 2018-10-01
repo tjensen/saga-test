@@ -44,10 +44,6 @@ describe('Form component', () => {
         children: 'SoundCloud'
       },
       {
-        value: 'https://api.twitch.tv/v4/oembed',
-        children: 'Twitch'
-      },
-      {
         value: 'https://publish.twitter.com/oembed',
         children: 'Twitter'
       },

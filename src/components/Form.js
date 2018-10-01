@@ -8,7 +8,6 @@ const OPTIONS = {
   Gfycat: 'https://api.gfycat.com/v1/oembed',
   Reddit: 'https://www.reddit.com/oembed',
   SoundCloud: 'https://soundcloud.com/oembed',
-  Twitch: 'https://api.twitch.tv/v4/oembed',
   Twitter: 'https://publish.twitter.com/oembed',
   Youtube: 'http://www.youtube.com/oembed'
 };
