@@ -1,6 +1,7 @@
-# Saga Test
+# Project Archival Note
 
-[![CircleCI](https://circleci.com/gh/tjensen/saga-test/tree/master.svg?style=svg)](https://circleci.com/gh/tjensen/saga-test/tree/master)
-
-Experiment to help me become familiar with
-[Redux-Saga](https://redux-saga.js.org/) and tools for testing sagas.
+I used this project to learn [Redux-Saga](https://redux-saga.js.org/) and
+[Redux Saga Test Plan](https://github.com/jfairbank/redux-saga-test-plan).
+However, I have no interest in keeping up with the frequent "Dependabot alerts"
+for security vulnerabilities affecting the many NPM dependencies, so I have
+archived this repository.
